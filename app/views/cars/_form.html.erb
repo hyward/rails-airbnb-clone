@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <%= simple_form_for(@car) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :brand %>
+        <%= f.input :price %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
