@@ -10,6 +10,55 @@
   </div>
 </div>
 
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+  <h2 class="col-12">The most searched cities</h2>
+  <% @cars.each do |c| %>
+    <div class="col-sm-12 col-md-6 col-lg-4 my-2 mx-auto">
+      <div class="card-car">
+       <div style="background-image: url('https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');" class="card-top">
+        </div>
+        <div class="card-bottom">
+        <h5 class="card-title"><%= link_to c.name, c, class: 'card-title' %> <strong>·</strong> <%= link_to c.city.name, c, class: 'card-title' %></h5>
+        <p class="card-details d-inline-block">
+          <img width=30px src="https://image.flaticon.com/icons/svg/2061/2061870.svg" alt="">
+          <%= c.transmission.truncate(4) %> <strong>·</strong>
+          <img width=30px src="https://image.flaticon.com/icons/svg/2917/2917696.svg" alt="">
+          <%= c.seats %>
+          <p class="ml-4 d-inline-block"> <strong>$<%= c.price %>/Day</strong> </p>
+        </p>
+        </div>
+     </div>
+    </div>
+  <% end %>
+</div>
+</div>
+
+<br>
+
+<div class="container">
+  <h2 class="col-12">Reviews</h2>
+  <div class="col-sm-12">
+    <div class="notification">
+      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+      <div class="notification-content">
+        <p><small>14th June</small></p>
+        <p>PeddleCars is greate. It is so easy to use, the cars I have used are greate and the webapp is fantastic!.</p>
+      </div>
+    </div>
+
+    <div class="notification">
+      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
+      <div class="notification-content">
+        <p><small>9th July</small></p>
+        <p>I have used this webapp so many times and evrytime you get fantestic cars in greate condition!!!</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -18,7 +67,7 @@
 
 
 
-<!-- <div class="footer">
+<div class="footer">
   <div class="footer-links">
     <a href="#"><i class="fab fa-github"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -27,6 +76,6 @@
     <a href="#"><i class="fab fa-linkedin"></i></a>
   </div>
   <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i> at Le Wagon
+    For more information please email us: peddlecars@me.com
   </div>
-</div> -->
+</div>
