@@ -25,12 +25,10 @@ class CarsController < ApplicationController
       render :new
     end
   end
-
   private
   def set_car
     @car = Car.find(params[:id])
   end
-
   def car_params
     params.require(:car).permit(:name, :brand, :price, :transmission, :trunk, :seats, :city_id)
   end
