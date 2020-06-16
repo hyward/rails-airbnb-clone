@@ -2,6 +2,7 @@ class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
+    @query = params[:query]
     if params[:query].empty?
       @cars = Car.all
     else
