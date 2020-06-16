@@ -13,16 +13,24 @@ class CarsController < ApplicationController
   end
 
   def new
+    @car = Car.new
   end
 
   def create
+    @car = Car.new(car_params)
+    if @car.save
+      redirect_to @car
+    else
+      render :new
+    end
   end
 
   private
   def set_car
     @car = Car.find(params[:id])
   end
+
   def car_params
-    params.require(:car).permit(:name, :brand, :price)
+    params.require(:car).permit(:name, :brand, :price, :transmission, :trunk, :seats)
   end
 end
