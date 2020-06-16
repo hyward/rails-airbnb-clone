@@ -4,9 +4,10 @@
       <%= simple_form_for(@car) do |f| %>
         <%= f.input :name %>
         <%= f.input :brand %>
-        <%= f.input :transmission %>
-        <%= f.input :seats %>
+        <%= f.input :transmission, collection: ['Automatic', 'Manual'] %>
+        <%= f.input :seats, collection: 2..4 %>
         <%= f.input :trunk %>
+        <%= f.association :city, { prompt: "Pick a city"} %>
         <%= f.submit %>
       <% end %>
     </div>
