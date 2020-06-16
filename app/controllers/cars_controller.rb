@@ -1,12 +1,12 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show, :edit, :updaet, :destroy]
+  before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
-    @cars = Car.all
-
     if params[:query].nil?
       @cars = Car.all
     else
-      @cars = Car.where("name iLike '#{params[:query]}'")
+      @city = City.where(name: params[:query].capitalize).first
+      @cars = Car.where(city_id: @city.id)
     end
   end
 
@@ -25,13 +25,11 @@ class CarsController < ApplicationController
       render :new
     end
   end
-
-
   private
   def set_car
     @car = Car.find(params[:id])
   end
   def car_params
-    params.require(:car).permit(:name, :brand, :price)
+    params.require(:car).permit(:name, :brand, :price, :transmission, :trunk, :seats, :city_id)
   end
 end
