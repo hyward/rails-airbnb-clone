@@ -17,22 +17,37 @@
   width: 90%;
   height: 300px;
   border-radius: 5px;
+  background-color: white;
   .card-top {
     height: 70%;
     background-size: cover;
     background-position: center;
     border-radius: 5px;
   }
+  .card-bottom{
+    padding: 10px;
+  }
   .card-title {
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     line-height: 1rem;
     padding-top: 4px;
     margin-top: 10px;
+    text-decoration: none;
+    color: black;
 
+  }
+
+  .card-title:hover {
+    color: darkgray;
   }
 
   .card-details {
     line-height: 1rem;
   }
+}
+
+.card-car:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
+  transition-duration: 0.4s;
 }
