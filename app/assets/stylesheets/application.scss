@@ -11,3 +11,27 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+.card-car {
+  width: 90%;
+  height: 300px;
+  border-radius: 5px;
+  .card-top {
+    height: 70%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+  }
+  .card-title {
+    font-weight: bold;
+    font-size: 1.8rem;
+    line-height: 1rem;
+    padding-top: 4px;
+
+  }
+
+  .card-details {
+    line-height: 1rem;
+  }
+}
