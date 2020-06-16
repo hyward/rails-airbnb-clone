@@ -1,6 +1,17 @@
 Car.destroy_all
 City.destroy_all
+User.destroy_all
+
 @cities = []
+@users = []
+
+10.times do
+  @user = User.create!(
+    email: Faker::Internet.email,
+    password: '123456')
+  @users << @user
+end
+
 10.times do
   @city = City.new(name: Faker::Address.state)
   @city.save
@@ -8,18 +19,17 @@ City.destroy_all
 end
 
 100.times do
-
   make = Faker::Vehicle.make
-  @car = Car.new(
+  puts @car = Car.create!(
     name: Faker::Vehicle.model(make_of_model: make),
     brand: make,
     transmission: Faker::Vehicle.transmission,
     price: Faker::Vehicle.mileage(min: 100, max: 1000),
     seats: Faker::Vehicle.door_count,
     trunk: Faker::Vehicle.mileage(min: 100, max: 1000),
-    city: @cities.sample
+    city: @cities.sample,
+    user: @users.sample
     )
-  @car.save
 end
 
 
