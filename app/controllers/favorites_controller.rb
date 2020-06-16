@@ -8,7 +8,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new(user_id: current_user.id, car_id: @car.id)
     if @favorite.save
       redirect_to car_path(@car)
-      flash[:success] = 'Added to favorites'
+      flash[:success] = 'Added to favorites!'
     else
       redirect_to car_path(@car)
       flash[:warning] = 'A problem occured'
