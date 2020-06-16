@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-6">
       <%= simple_form_for(@car) do |f| %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
         <%= f.input :name %>
         <%= f.input :brand %>
         <%= f.input :transmission, collection: ['Automatic', 'Manual'] %>
