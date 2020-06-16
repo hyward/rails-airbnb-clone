@@ -1,6 +1,7 @@
-
+<%  @car.photos.each do |c| %>
+  <%=  cl_image_tag c.key %>
+<% end %>
 <%= @car.name %>
-
 <div class="container p-4">
  <div class="border-bottom">
    <div class="row">
@@ -19,7 +20,7 @@
   <div class="border-bottom py-3">
   <div class="row">
     <div class="col-6">
-      <p>lorem ipsum</p>
+      <p><%= @car.user.email %></p>
     </div>
 
     <div class="col-6">
