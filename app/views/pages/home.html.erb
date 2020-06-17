@@ -1,4 +1,6 @@
-
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://files.porsche.com/filestore/image/multimedia/none/rd-2019-homepage-banner-ww-taycantop-kw47/normal/320c6d98-055c-11ea-80c6-005056bbdc38/porsche-normal.jpg);">
   <div class="container">
     <h1><strong>A ride to heaven</strong></h1>
