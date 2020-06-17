@@ -3,11 +3,16 @@ class CarsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
     @query = params[:query]
-    if params[:query].empty?
+    if @query.empty?
       @cars = Car.all
     else
+      if City.all_cities.include?(@query)
       @city = City.where(name: params[:query].capitalize).first
       @cars = Car.where(city_id: @city.id)
+    else
+      redirect_to root_url
+        flash[:warning] = 'No city with that name'
+      end
     end
   end
 
