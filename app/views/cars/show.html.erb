@@ -20,10 +20,13 @@
   </div>
 
   <div class="show-banner rounded">
-    <%  @car.photos.each do |c| %>
-      <%=  cl_image_tag c.key, class: 'image img-fluid rounded' %>
-    <% end %>
-    <img src="https://source.unsplash.com/random" class="image rounded" alt="">
+    <% if @car.photos.present? %>
+      <%  @car.photos.each do |c| %>
+        <%=  cl_image_tag c.key, class: 'image img-fluid rounded' %>
+      <% end %>
+      <% else %>
+        <img src="https://source.unsplash.com/random" class="image rounded" alt="">
+        <% end %>
   </div>
   <br>
   <div class="row mt-3">

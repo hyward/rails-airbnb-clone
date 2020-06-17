@@ -34,6 +34,7 @@ class CarsController < ApplicationController
       render :new
     end
   end
+
   private
 
   def set_car
