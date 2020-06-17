@@ -6,21 +6,18 @@
     <div class="col-12" style="display: flex; justify-content: space-between;">
       <div class="">
       <h2><%= @car.brand %> · <%= @car.name %></h2>
-        
-  <p>Available in <%= link_to @car.city.name, @car.city.name %></p>
-    </div>
+        <p style="font-size: 1.2rem;">Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
+      </div>
 
     <div class="">
       <% if @favorite && @favorite.user == current_user %>
-      <a class="">Already added</a>
+      <a class="btn btn-danger">Already added</a>
       <% else %>
-          <%= link_to 'Add to favorites', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
+          <%= link_to 'Add to favorites', car_favorites_path(@car), method: :post, class: 'text-right btn btn-danger' %></p>
       <% end %>
     </div>
-
-      <p>Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
     </div>
-    </div>
+  </div>
 
   <div class="show-banner rounded">
     <%  @car.photos.each do |c| %>
@@ -94,16 +91,16 @@
 
 
   <div class="footer">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="footer-copyright">
+      For more information please email us: peddlecars@me.com
+    </div>
   </div>
-  <div class="footer-copyright">
-    For more information please email us: peddlecars@me.com
-  </div>
-</div>
 
 </div>
