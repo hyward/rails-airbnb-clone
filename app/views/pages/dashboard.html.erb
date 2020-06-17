@@ -4,6 +4,64 @@
       <h2>Welcome <%= current_user.email %></h2>
       <hr>
     </div>
+
+      <div class="col-6">
+        <h2 class="">Recently Booked:</h2>
+        <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Car</th>
+            <th scope="col">Dates</th>
+            <th scope="col">Owner name</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% current_user.bookings.each do |b| %>
+          <tr>
+            <td><%= b.car.name  %> <%= b.car.brand %> </td>
+            <td> <%= b.start_date %> to <%= b.end_date %> </td>
+            <td><%= b.car.user.email %></td>
+            <td><%= b.status %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <h2 class="">Rented cars:</h2>
+        <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Car</th>
+            <th scope="col">Dates</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @cars.each do |c| %>
+          <% c.bookings.each do |b| %>
+            <tr>
+            <td> <%= b.car.name %> <%= b.car.brand %> </td>
+            <td><%= b.start_date  %> to <%= b.end_date  %> </td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= b.status%>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <%= link_to 'Reject', booking_path(b), method: :delete, class: 'dropdown-item' %>
+                  <%= link_to 'Confirm', booking_path(b), method: :patch, class: 'dropdown-item' %>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+        </table>
+      </div>
       <h2 class="col-12">Favorite cars</h2>
       <% current_user.favorites.first(3).each do |c| %>
     <div class="col-sm-12 col-md-6 col-lg-4 my-2 mx-auto">
@@ -35,7 +93,7 @@
        <div style="background-image: url('https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');" class="card-top">
         </div>
         <div class="card-bottom">
-        <h5 class="card-title"><%= link_to c.name, c.car, class: 'card-title' %> <strong>·</strong> <%= link_to c.city.name, c, class: 'card-title' %></h5>
+        <h5 class="card-title"><%= link_to c.name, c, class: 'card-title' %> <strong>·</strong> <%= link_to c.city.name, c, class: 'card-title' %></h5>
         <p class="card-details d-inline-block">
           <img width=30px src="https://image.flaticon.com/icons/svg/2061/2061870.svg" alt="">
           <%= c.transmission.truncate(4) %> <strong>·</strong>

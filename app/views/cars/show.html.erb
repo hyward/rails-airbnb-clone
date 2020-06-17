@@ -1,21 +1,26 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-
 <div class="container my-2">
   <div class="row" >
     <div class="col-12" style="display: flex; justify-content: space-between;">
       <div class="">
       <h2><%= @car.brand %> · <%= @car.name %></h2>
+        
   <p>Available in <%= link_to @car.city.name, @car.city.name %></p>
     </div>
 
     <div class="">
-      <p> <%= link_to 'Add to Favorites', car_favorites_path(@car), method: :post, class: 'btn btn-danger' %></p>
-    </div>
+      <% if @favorite && @favorite.user == current_user %>
+      <a class="">Already added</a>
+      <% else %>
+          <%= link_to 'Add to favorites', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
+      <% end %>
     </div>
 
-  </div>
+      <p>Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
+    </div>
+    </div>
 
   <div class="show-banner rounded">
     <%  @car.photos.each do |c| %>
@@ -43,7 +48,10 @@
         <hr>
         <p><%= @car.user.email %></p>
         <hr>
-        <%= link_to "Book now - $#{@car.price}/day", root_url, class: 'btn btn-danger form-control' %>
+        <%= simple_form_for([@car, @booking]) do |f| %>
+          <input type="text" placeholder="Start date - End date" name='startdate' id="start-date" class="form-control flatpickr mb-3">
+          <%= f.submit "Book now - $#{@car.price}/day", class: 'btn btn-danger form-control' %>
+        <% end %>
       </div>
     </div>
 

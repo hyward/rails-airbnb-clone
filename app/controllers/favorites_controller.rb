@@ -17,7 +17,4 @@ class FavoritesController < ApplicationController
 
   private
 
-  def fav_params
-    params.require(:favorite).permit(:user_id, :car_id)
-  end
 end

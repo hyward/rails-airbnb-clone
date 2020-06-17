@@ -12,6 +12,8 @@ class CarsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
+    @favorite = Favorite.find_by(car_id: @car.id)
   end
 
   def new
@@ -28,6 +30,7 @@ class CarsController < ApplicationController
     end
   end
   private
+
   def set_car
     @car = Car.find(params[:id])
   end
