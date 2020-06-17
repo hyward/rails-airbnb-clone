@@ -1,19 +1,18 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-
 <div class="container my-2">
   <div class="row">
     <div class="col-8">
       <h2><%= @car.brand %> · <%= @car.name %></h2>
-  <p>Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
+      <p>Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
     </div>
     <div class="col">
-      <% if current_user.favorites.include?(@car) == @car.id %>
-        <p> <%= link_to 'Add to Favorites', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
-        <% else %>
-          <%= link_to 'Already added', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
-        <% end %>
+      <% if @favorite && @favorite.user == current_user %>
+      <a class="">Already added</a>
+      <% else %>
+          <%= link_to 'Add to favorites', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
+      <% end %>
     </div>
   </div>
   <div class="show-banner rounded">
