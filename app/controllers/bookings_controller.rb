@@ -26,8 +26,9 @@ class BookingsController < ApplicationController
     redirect_to dashboard_path
   end
 
-    private
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
+  private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 end
