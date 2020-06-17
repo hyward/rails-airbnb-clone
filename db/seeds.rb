@@ -7,6 +7,7 @@ User.destroy_all
 
 10.times do
   @user = User.create!(
+    name: Faker::Name.name,
     email: Faker::Internet.email,
     password: '123456')
   @users << @user
