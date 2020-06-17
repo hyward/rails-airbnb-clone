@@ -9,7 +9,11 @@
   <p>Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
     </div>
     <div class="col">
-      <p> <%= link_to 'Add to Favorites', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
+      <% if current_user.favorites.include?(@car) == @car.id %>
+        <p> <%= link_to 'Add to Favorites', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
+        <% else %>
+          <%= link_to 'Already added', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
+        <% end %>
     </div>
   </div>
   <div class="show-banner rounded">
@@ -34,7 +38,10 @@
         <hr>
         <p><%= @car.user.email %></p>
         <hr>
-        <%= link_to "Book now - $#{@car.price}/day", root_url, class: 'btn btn-danger form-control' %>
+        <%= simple_form_for([@car, @booking]) do |f| %>
+          <input type="text" placeholder="Start date - End date" name='startdate' id="start-date" class="form-control flatpickr mb-3">
+          <%= f.submit "Book now - $#{@car.price}/day", class: 'btn btn-danger form-control' %>
+        <% end %>
       </div>
     </div>
   </div>

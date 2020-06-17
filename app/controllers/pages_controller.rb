@@ -4,6 +4,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @bookings = current_user.bookings
+    @cars = current_user.cars
   end
 
   def favorites
