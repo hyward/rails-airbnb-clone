@@ -3,39 +3,99 @@
 <% end %>
 
 <div class="container my-2">
-  <div class="row">
-    <div class="col-8">
+  <div class="row" >
+    <div class="col-12" style="display: flex; justify-content: space-between;">
+      <div class="">
       <h2><%= @car.brand %> · <%= @car.name %></h2>
-  <p>Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
+  <p>Available in <%= link_to @car.city.name, @car.city.name %></p>
     </div>
-    <div class="col">
-      <p> <%= link_to 'Add to Favorites', car_favorites_path(@car), method: :post, class: 'text-right' %></p>
+
+    <div class="">
+      <p> <%= link_to 'Add to Favorites', car_favorites_path(@car), method: :post, class: 'btn btn-danger' %></p>
     </div>
+    </div>
+
   </div>
+
   <div class="show-banner rounded">
     <%  @car.photos.each do |c| %>
       <%=  cl_image_tag c.key, class: 'image img-fluid rounded' %>
     <% end %>
     <img src="https://source.unsplash.com/random" class="image rounded" alt="">
   </div>
+  <br>
   <div class="row mt-3">
-    <div class="col-8">
+    <div class="col-sm-12 col-lg-8">
       <h2>Car offered by <%= @car.user.email %></h2>
       <p><%= @car.seats %> seats · <%= @car.trunk %> Trunk space</p>
       <hr>
+      <br>
       <p>
+        <strong>Description of the car: </strong>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ut sit rem, mollitia, consequatur cumque fuga quia fugit porro alias.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aut amet cumque alias, tenetur voluptatibus corporis animi esse, distinctio ratione.
       </p>
     </div>
+
     <div class="col ">
-      <div class="profile-box text-center mx-auto sticky">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="..." class="avatar img-fluid">
+      <div class="profile-box text-center mx-auto">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="..." class="avatar img-fluid img-space">
         <hr>
         <p><%= @car.user.email %></p>
         <hr>
         <%= link_to "Book now - $#{@car.price}/day", root_url, class: 'btn btn-danger form-control' %>
       </div>
     </div>
+
   </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <h2>The map will be here!🗺</h2>
+
+  <br>
+  <hr>
+  <br>
+
+  <div class="container">
+    <h2 class="col-12">Reviews</h2>
+    <div class="col-sm-12">
+      <div class="notification">
+        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+        <div class="notification-content">
+          <p><small>20th Mai</small></p>
+          <p>The car is very nice to drive, it was very clean and the price was perfect for what you got. If I am back, I will defintly get the same car!🚘</p>
+        </div>
+      </div>
+
+      <div class="notification">
+        <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
+        <div class="notification-content">
+          <p><small>9th July</small></p>
+          <p>I very much enjoyed the experiance. The owner was very nice and helpful. He explained everything I needed to know and even gave me a satnav for the car.👏</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+
+
+
+  <div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+    For more information please email us: peddlecars@me.com
+  </div>
+</div>
+
 </div>
