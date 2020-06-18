@@ -1,26 +1,30 @@
 <div class="container">
   <div class="row">
-    <h2 class="col-12"><%= @cars.count %> Cars found</h2>
-    <% if @query != "" %>
-      <p class="col-12">In <%= @query %></p>
-      <% end %>
+    <h2 class="col-12 title"><%= @cars.count %> Cars found </h2>
+  </div>
+  <hr>
+  <div class="row">
   <% @cars.each do |c| %>
-    <div class="col-sm-12 col-md-6 col-lg-4 my-2 mx-auto">
+    <div class="col-sm-12 col-md-6 col-lg-4 my-2 card-col">
+    <%= link_to c do %>
       <div class="card-car">
        <div style="background-image: url('https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');" class="card-top">
         </div>
         <div class="card-bottom">
-        <h5 class="card-title"><%= link_to c.name, c, class: 'card-title' %> <strong>·</strong> <%= link_to c.city.name, c, class: 'card-title' %></h5>
-        <p class="card-details d-inline-block">
+        <h5 class="ml-1 card-title"><%= c.name %> <strong>·</strong> <%= c.city.name%></h5>
+        <div class="card-details-holder">
+          <p class="card-details">
           <img width=30px src="https://image.flaticon.com/icons/svg/2061/2061870.svg" alt="">
-          <%= c.transmission.truncate(4) %> <strong>·</strong>
+          <%= c.transmission %> <strong>·</strong>
           <img width=30px src="https://image.flaticon.com/icons/svg/2917/2917696.svg" alt="">
           <%= c.seats %>
-          <p class="ml-4 d-inline-block"> <strong>$<%= c.price %>/Day</strong> </p>
-        </p>
+          </p>
+          <p class="m-1 card-details"> <strong>$<%= c.price %>/Day</strong> </p>
+        </div>
         </div>
      </div>
     </div>
+    <% end %>
   <% end %>
 </div>
 </div>
