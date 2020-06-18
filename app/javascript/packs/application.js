@@ -30,6 +30,12 @@ import flatpickr from "flatpickr";
 import { initMapbox } from '../plugins/init_mapbox';
 document.addEventListener('turbolinks:load', () => {
   const startI1 = document.querySelector('#start-date');
+  const submit = document.querySelector('#submit')
+
+  if (startI1.value != '') {
+    submit.classList.remove('disabled')
+  }
   flatpickr(startI1, { mode: "range"});
+
   initMapbox();
 });

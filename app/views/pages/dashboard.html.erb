@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2>Welcome <%= current_user.email %></h2>
+      <h2>Welcome <%= current_user.name || current_user.email %></h2>
       <hr>
     </div>
 

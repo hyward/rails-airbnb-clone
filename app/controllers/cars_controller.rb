@@ -3,12 +3,23 @@ class CarsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
     @query = params[:query]
-    if params[:query].empty?
-      @cars = Car.all
+    if @query.present?
+      @cars = Car.joins(:city).where("cities.name iLike ?", "%#{@query}%")
     else
-      @city = City.where(name: params[:query].capitalize).first
-      @cars = Car.where(city_id: @city.id)
+      @cars = Car.all
     end
+    # if @query.empty?
+    #   @cars = Car.all
+    # else
+    #   @cars = Car.joins(:city).where("city.name iLike '%#{@query}%'")
+    #   if City.all_cities.include?(@query)
+    #   @city = City.where(name: params[:query].capitalize).first
+    #   @cars = Car.where(city_id: @city.id)
+    # else
+    #   redirect_to root_url
+    #     flash[:warning] = 'No city with that name'
+    #   end
+    # end
   end
 
   def show
@@ -35,6 +46,7 @@ class CarsController < ApplicationController
       render :new
     end
   end
+
   private
 
   def set_car
