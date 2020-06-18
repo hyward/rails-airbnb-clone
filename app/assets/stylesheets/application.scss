@@ -60,6 +60,7 @@ a {
   .image {
     height: 100%;
     width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -107,3 +108,5 @@ table {
 i {
   margin-top: 30px;
 }
+
+
