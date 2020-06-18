@@ -8,6 +8,7 @@
         <%= f.input :transmission, collection: ['Automatic', 'Manual'] %>
         <%= f.input :seats, collection: 2..4 %>
         <%= f.input :trunk %>
+        <%= f.input :address %>
         <%= f.association :city, { prompt: "Pick a city"} %>
         <%= f.submit %>
       <% end %>
