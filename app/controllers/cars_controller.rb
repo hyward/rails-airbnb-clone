@@ -14,6 +14,12 @@ class CarsController < ApplicationController
   def show
     @booking = Booking.new
     @favorite = Favorite.find_by(car_id: @car.id)
+    @markers = [{
+        lat: @car.latitude,
+        lng: @car.longitude,
+        #infoWindow: render_to_string(partial: "info_window", locals: { car: @car })
+        # js lowercamelCase the name of the key
+      }]
   end
 
   def new
@@ -35,6 +41,6 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
   end
   def car_params
-    params.require(:car).permit(:name, :brand, :price, :transmission, :trunk, :seats, :city_id, photos: [])
+    params.require(:car).permit(:name, :brand, :price, :transmission, :trunk, :seats, :city_id, :address, photos: [])
   end
 end
