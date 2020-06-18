@@ -74,6 +74,13 @@
   </div>
 </div>
 
+  <div>
+  <h2>The map will be here!🗺</h2>
+  <div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
 <hr>
 
 <div class="row">
@@ -84,28 +91,6 @@
 
 <hr>
 
-<div class="row">
-    <h2 class="col-12">Reviews</h2>
-    <div class="col-sm-12">
-      <div class="notification">
-        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-        <div class="notification-content">
-          <p><small>20th Mai</small></p>
-          <p>The car is very nice to drive, it was very clean and the price was perfect for what you got. If I am back, I will defintly get the same car!🚘</p>
-        </div>
-      </div>
-
-      <div class="notification">
-        <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-        <div class="notification-content">
-          <p><small>9th July</small></p>
-          <p>I very much enjoyed the experiance. The owner was very nice and helpful. He explained everything I needed to know and even gave me a satnav for the car.👏</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <br>
 
 
 

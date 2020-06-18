@@ -27,7 +27,7 @@ import "bootstrap";
 import flatpickr from "flatpickr";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-
+import { initMapbox } from '../plugins/init_mapbox';
 document.addEventListener('turbolinks:load', () => {
   const startI1 = document.querySelector('#start-date');
   const submit = document.querySelector('#submit')
@@ -36,5 +36,6 @@ document.addEventListener('turbolinks:load', () => {
     submit.classList.remove('disabled')
   }
   flatpickr(startI1, { mode: "range"});
-  console.log(startI1.value, submit)
+
+  initMapbox();
 });
