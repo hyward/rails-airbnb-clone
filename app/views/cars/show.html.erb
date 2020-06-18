@@ -1,73 +1,90 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-<div class="container my-2">
-  <div class="row" >
+
+<div class="container my-3">
+  <div class="row">
     <div class="col-12" style="display: flex; justify-content: space-between;">
-      <div class="">
-      <h2><%= @car.brand %> · <%= @car.name %></h2>
-        <p style="font-size: 1.2rem;">Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
+      <div>
+        <h2><%= @car.brand %> · <%= @car.name %></h2>
+        <p class="subtitle" >Available in <%= link_to @car.city.name, "/cars?query=#{@car.city.name}" %></p>
       </div>
-
-    <div class="">
-      <% if @favorite && @favorite.user == current_user %>
-      <a class="btn btn-danger">Already added</a>
+      <div>
+        <% if @favorite && @favorite.user == current_user %>
+        <%= link_to favorite_path(@favorite), method: :delete do %>
+          <i style="color: red" class="fas fa-heart"></i>
+          <% end %>
       <% else %>
-          <%= link_to 'Add to favorites', car_favorites_path(@car), method: :post, class: 'text-right btn btn-danger' %></p>
+          <%= link_to car_favorites_path(@car), method: :post do %>
+          <i style="color: red" class="far fa-heart"></i>
+          <% end %>
+        </p>
       <% end %>
-    </div>
+      </div>
     </div>
   </div>
 
-  <div class="show-banner rounded">
-    <% if @car.photos.present? %>
-      <%  @car.photos.each do |c| %>
-        <%=  cl_image_tag c.key, class: 'image img-fluid rounded' %>
-      <% end %>
-      <% else %>
-        <img src="https://source.unsplash.com/random" class="image rounded" alt="">
+<div class="show-banner rounded">
+  <% if @car.photos.present? %>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <%  @car.photos.each_with_index do |c, index| %>
+          <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+          <%=  cl_image_tag c.key, class: 'd-block image img-fluid rounded' %>
+          </div>
         <% end %>
-  </div>
-  <br>
-  <div class="row mt-3">
-    <div class="col-sm-12 col-lg-8">
-      <h2>Car offered by <%= @car.user.email %></h2>
-      <p><%= @car.seats %> seats · <%= @car.trunk %> Trunk space</p>
-      <hr>
-      <br>
-      <p>
-        <strong>Description of the car: </strong>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ut sit rem, mollitia, consequatur cumque fuga quia fugit porro alias.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aut amet cumque alias, tenetur voluptatibus corporis animi esse, distinctio ratione.
-      </p>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
+  <% else %>
+    <img src="https://source.unsplash.com/random" class="image img-fluid rounded" alt="">
+  <% end %>
+</div>
 
-    <div class="col ">
-      <div class="profile-box text-center mx-auto">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="..." class="avatar img-fluid img-space">
+
+<div class="row my-3">
+  <div class="col-sm-12 col-lg-8">
+    <h2>Car offered by <%= @car.user.name %></h2>
+    <p><%= @car.seats %> seats · <%= @car.trunk %> Trunk space</p>
+    <hr>
+    <p>
+      <strong>Description:</strong> <br>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ut sit rem, mollitia, consequatur cumque fuga quia fugit porro alias.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aut amet cumque alias, tenetur voluptatibus corporis animi esse, distinctio ratione.
+    </p>
+  </div>
+  <div class="col">
+    <div class="profile-box text-center mx-auto">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="..." class="avatar img-fluid img-space">
         <hr>
-        <p><%= @car.user.email %></p>
+        <p><%= @car.user.name %></p>
         <hr>
         <%= simple_form_for([@car, @booking]) do |f| %>
           <input type="text" placeholder="Start date - End date" name='startdate' id="start-date" class="form-control flatpickr mb-3" required>
           <%= f.submit "Book now - $#{@car.price}/day", class: 'btn btn-danger form-control' %>
         <% end %>
-      </div>
     </div>
-
   </div>
+</div>
 
-  <br>
-  <hr>
-  <br>
+<hr>
 
-  <h2>The map will be here!🗺</h2>
+<div class="row">
+  <div class="col-12">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317715.7118807617!2d-0.38177644912682684!3d51.52873520409675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondres%2C%20Royaume-Uni!5e0!3m2!1sfr!2ses!4v1592485549643!5m2!1sfr!2ses" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  </div>
+</div>
 
-  <br>
-  <hr>
-  <br>
+<hr>
 
-  <div class="container">
+<div class="row">
     <h2 class="col-12">Reviews</h2>
     <div class="col-sm-12">
       <div class="notification">

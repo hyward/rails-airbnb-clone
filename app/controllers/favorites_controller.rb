@@ -15,6 +15,13 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
+    redirect_to @favorite.car
+    flash[:danger] = 'Removed from favorites'
+  end
+
   private
 
 end
