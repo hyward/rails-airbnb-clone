@@ -26,6 +26,7 @@ end
 20.times do
   make = Faker::Vehicle.make
   file = URI.open(car_pictures.sample)
+  file_2 = URI.open(car_pictures.sample)
   puts @car = Car.create!(
     name: Faker::Vehicle.model(make_of_model: make),
     brand: make,
@@ -38,6 +39,7 @@ end
     address: @addresses.sample
     )
   @car.photos.attach(io: file, filename: 'car.png', content_type: 'image/png')
+  @car.photos.attach(io: file_2, filename: 'car2.png', content_type: 'image/png')
 end
 
 
