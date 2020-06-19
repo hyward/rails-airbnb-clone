@@ -1,6 +1,6 @@
 <% if !current_user.photo.attached? %>
   <div class="alert-warning w-50 mx-auto mt-3 p-4" role="alert">
-  Let's show your pretty fave and add a profile picture
+  Let's show your pretty face and add a profile picture
   <%= link_to "Add now", edit_user_registration_url %>
 </div>
 <% end %>
@@ -96,8 +96,6 @@
 
         <div class="card-body">
             <h2 class="">Rented Cars:</h2>
-
-
             <% @cars.each do |b| %>
             <% b.bookings.each do |c| %>
             <thead>
@@ -120,6 +118,7 @@
               </ul>
             </thead>
             <% end %>
+
             <% end %>
         </div>
     </div>
