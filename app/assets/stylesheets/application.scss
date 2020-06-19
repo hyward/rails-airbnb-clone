@@ -110,4 +110,16 @@ i {
   margin-top: 30px;
 }
 
+.dash-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 15px RGBA(49,217,80,0.12);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 

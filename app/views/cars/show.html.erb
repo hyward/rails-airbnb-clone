@@ -62,7 +62,11 @@
   </div>
   <div class="col">
     <div class="profile-box text-center mx-auto">
-      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="..." class="avatar img-fluid img-space">
+     <% if @car.user.photo.attached? %>
+        <%= cl_image_tag @car.user.photo.key, crop: :thumb, gravity: :face, width: 100, height: 100, class: 'rounded-circle' %>
+        <% else %>
+        <img src="https://image.flaticon.com/icons/svg/847/847969.svg" class="avatar" alt="">
+        <% end %>
         <hr>
         <p><%= @car.user.name %></p>
         <hr>
