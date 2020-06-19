@@ -1,6 +1,6 @@
 require "open-uri"
-Car.destroy_all
 City.destroy_all
+Car.destroy_all
 User.destroy_all
 
 
