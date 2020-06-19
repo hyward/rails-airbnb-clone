@@ -10,7 +10,7 @@ class Car < ApplicationRecord
   validates :brand, presence: true
   validates :seats, presence: true
   validates :transmission, presence: true
-  validates :trunk, presence: true
+  validates :price, presence: true
   validates :city, presence: true
   validates :user, presence: true
   validates :address, presence: true

@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update, :destroy]
   def create
-
     if params['startdate'] == ''
       redirect_to car_path(@car)
     else
@@ -14,10 +13,8 @@ class BookingsController < ApplicationController
     else
       render 'cars/show'
     end
-    end
-
   end
-
+end
   def edit
   end
 

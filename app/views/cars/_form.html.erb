@@ -1,17 +1,26 @@
-<div class="container">
+<div class="container my-2">
   <div class="row">
-    <div class="col-6">
-      <%= simple_form_for(@car) do |f| %>
-        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-        <%= f.input :name %>
-        <%= f.input :brand %>
+    <div class="col-6 mx-auto">
+      <div class="form-wrapper ">
+        <%= simple_form_for(@car) do |f| %>
+        <div class="form-row">
+          <div class="col">
+            <%= f.input :name, placeholder: 'Model S', class: 'm-2' %>
+          </div>
+          <div class="col">
+            <%= f.input :brand, placeholder: 'Tesla', class: 'ml-2' %>
+          </div>
+
+        </div>
         <%= f.input :transmission, collection: ['Automatic', 'Manual'] %>
         <%= f.input :seats, collection: 2..4 %>
-        <%= f.input :trunk %>
-        <%= f.input :address %>
+        <%= f.input :price, placeholder: 'price per day' %>
+        <%= f.input :address, placeholder: 'Street address'  %>
         <%= f.association :city, { prompt: "Pick a city"} %>
-        <%= f.submit %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.submit 'Upload car', class: 'btn btn-success w-100' %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
