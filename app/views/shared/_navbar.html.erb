@@ -13,12 +13,7 @@
       <% if user_signed_in? %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, width: 50, height: 50, class: 'rounded-circle' %> || <% current_user.name %>
-          p<% else %>
-          <% current_user.name %>
-          <%end%>
-
+          <%= current_user.name %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'Dashboard', dashboard_path, class: 'dropdown-item' %>
@@ -28,7 +23,11 @@
         </div>
       </li>
       <li class="nav-item active">
-
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, width: 50, height: 50, class: 'rounded-circle' %>
+        <% else %>
+          <img src="https://image.flaticon.com/icons/svg/847/847969.svg" class="rounded-circle" width="50px" alt="">
+        <%end%>
       </li>
       <% else %>
       <li class="nav-item active">
