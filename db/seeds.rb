@@ -33,6 +33,7 @@ end
     price: Faker::Vehicle.mileage(min: 100, max: 200),
     seats: Faker::Vehicle.door_count,
     trunk: Faker::Vehicle.mileage(min: 100, max: 1000),
+    description: Faker::TvShows::RickAndMorty.quote,
     city: @cities.sample,
     user: @users.sample,
     address: @addresses.sample
