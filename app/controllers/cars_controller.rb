@@ -33,6 +33,19 @@ class CarsController < ApplicationController
       }]
   end
 
+  def edit
+    if current_user.id != @car.user.id
+      redirect_to root_url
+      flash[:warning] = 'You are not allowed'
+    end
+  end
+
+  def update
+    @car.update(car_params)
+    @car.save
+    redirect_to @car
+  end
+
   def new
     @car = Car.new
   end
@@ -52,6 +65,7 @@ class CarsController < ApplicationController
   def set_car
     @car = Car.find(params[:id])
   end
+
   def car_params
     params.require(:car).permit(:name, :brand, :price, :transmission, :trunk, :seats, :city_id, :address, photos: [])
   end
