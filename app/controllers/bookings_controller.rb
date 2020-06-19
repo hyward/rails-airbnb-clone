@@ -1,19 +1,17 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
   def create
-
-    if params['startdate'] == ''
-      redirect_to car_path(@car)
-    else
-      start = params['startdate'].split('to').first.strip
-      end_date = params['startdate'].split('to').last.strip
-      car = Car.find(params[:car_id])
-      booking = Booking.new(start_date: start, end_date: end_date, user: current_user, car: car)
-      if booking.save
+    start = nil
+    end_date = nil
+    start = params['startdate']&.split('to').first.strip unless params['startdate'].blank?
+    end_date = params['startdate']&.split('to').last.strip unless params['startdate'].blank?
+    @car = Car.find(params[:car_id])
+    @booking = Booking.new(start_date: start, end_date: end_date, user: current_user, car: @car)
+    if @booking.save
       redirect_to dashboard_path
     else
       render 'cars/show'
-    end
     end
 
   end
