@@ -1,3 +1,86 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Welcome <%= current_user.name || current_user.email %></h2>
+      <hr>
+    </div>
+
+
+
+ <div class="row">
+
+
+<div class="col-lg-6 mb-4">
+    <div class="card shadow-sm">
+
+        <img class="card-img-top" src="" alt="" >
+
+          <div class="card-body">
+
+              <h2 class="">Recently Booked:</h2>
+              <% if current_user.bookings.count == 0 %>
+              <p>You have no bookings yet</p>
+              <% else  %>
+
+              <% current_user.bookings.each do |b| %>
+              <thead>
+                <ul class="list-group">
+                  <br>
+                  <li class="list-group-item font-weight-bold">Car: <%= b.car.name %> <%= b.car.brand %></li>
+                  <li class="list-group-item">Dates: <%= b.start_date%> to <%= b.end_date %></li>
+                  <li class="list-group-item">Owner: <%= b.car.user.name %></li>
+                  <li class="list-group-item">Status: <%= b.status %></li>
+                </ul>
+              </thead>
+              <% end %>
+              <% end %>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="col-lg-6 mb-4">
+    <div class="card">
+
+        <img class="card-img-top" src="" alt="" >
+
+        <div class="card-body">
+            <h2 class="">Rented Cars:</h2>
+
+
+            <% @cars.each do |b| %>
+            <% b.bookings.each do |c| %>
+            <thead>
+              <ul class="list-group">
+                <br>
+                <li class="list-group-item font-weight-bold">Car: <%= c.car.name %></li>
+                <li class="list-group-item">Dates: <%= c.start_date %> to <%= c.end_date %></li>
+                <li class="list-group-item">
+                  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= c.status%>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to 'Reject', booking_path(c), method: :delete, class: 'dropdown-item' %>
+      <%= link_to 'Confirm', booking_path(c), method: :patch, class: 'dropdown-item' %>
+    </div>
+  </div>
+                </li>
+
+              </ul>
+            </thead>
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
+
+<!--
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -83,7 +166,7 @@
   <% end %>
   <div class="col-12">
     <%= link_to 'See all', allfavs_path, class: 'btn btn-danger'  %>
-  </div>
+  </div> -->
 
 
   <h2 class="col-12 mt-4">Uploaded cars</h2>
