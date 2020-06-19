@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
       if booking.save
       redirect_to dashboard_path
     else
-      render 'cars/show'
+      flash[:success] = 'please select Booking day'
     end
   end
 end
