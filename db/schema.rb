@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 2020_06_19_103756) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "flats", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
